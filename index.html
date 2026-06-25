@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박운서 | 개인 작품 포트폴리오</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #0f0f11;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        li {
+            list-style: none;
+        }
+
+        header, section {
+            width: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .inner {
+            width: 1600px;
+            margin: 0 auto;
+            position: relative;
+            height: 100%;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background-color: rgba(15, 15, 17, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f1f24;
+        }
+        header .inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        header .logo {
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #00ffcc;
+        }
+        header .gnb {
+            display: flex;
+            gap: 40px;
+        }
+        header .gnb a {
+            font-size: 16px;
+            font-weight: 500;
+            color: #aaa;
+            transition: color 0.3s;
+        }
+        header .gnb a:hover, header .gnb a.active {
+            color: #00ffcc;
+        }
+
+        section {
+            padding: 140px 0 100px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .section-title {
+            font-size: 38px;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-left: 4px solid #00ffcc;
+            padding-left: 20px;
+        }
+
+        #home {
+            background: linear-gradient(135deg, #12121a, #0f172a);
+            height: 100vh;
+            padding-top: 80px;
+        }
+        #home .inner {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            height: 100%;
+        }
+        #home .intro-text {
+            max-width: 1100px;
+        }
+        #home .intro-text h2 {
+            font-size: 96px;
+            line-height: 1.1;
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+        
+        #home .intro-desc-wrap {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        #home .intro-bar {
+            width: 8px;
+            height: 38px;
+            background-color: #00ffcc;
+            flex-shrink: 0;
+        }
+        #home .intro-text p {
+            font-size: 26px;
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+
+        #about { background-color: #131316; }
+        .about-content {
+            display: flex;
+            gap: 80px;
+            align-items: center;
+        }
+        .about-profile {
+            width: 320px;
+            height: 420px;
+            background: #1e1e24;
+            border-radius: 16px;
+            border: 1px solid #2e2e38;
+            flex-shrink: 0;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .about-profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .about-profile:hover img {
+            transform: scale(1.05);
+        }
+        .about-info p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+        .about-info .meta-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #2e2e38;
+            font-size: 16px;
+            color: #94a3b8;
+            line-height: 2;
+        }
+        .about-info .meta-info strong {
+            color: #fff;
+        }
+
+        #skills { background-color: #0f0f11; }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+        .skill-card {
+            background: #131316;
+            padding: 45px 35px;
+            border-radius: 20px;
+            border: 1px solid #1f1f24;
+            transition: transform 0.3s, border-color 0.3s, background-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 330px;
+        }
+        .skill-card:hover {
+            transform: translateY(-7px);
+            border-color: #00ffcc;
+            background: #17171c;
+        }
+        .skill-icon-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        .skill-icon-wrap img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        .skill-badge {
+            font-size: 11px;
+            font-weight: 600;
+            color: #00ffcc;
+            background: rgba(0, 255, 204, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .skill-info h3 { 
+            font-size: 22px; 
+            font-weight: 600;
+            color: #fff; 
+            margin-bottom: 12px; 
+        }
+        .skill-info p { 
+            font-size: 14px; 
+            color: #94a3b8; 
+            line-height: 1.6; 
+            word-break: keep-all;
+        }
+
+        #works {
+            background-color: #131316;
+            padding: 140px 0;
+        }
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+        }
+        .work-item {
+            background: #0f0f11;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #1f1f24;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .work-item:hover {
+            transform: translateY(-8px);
+            border-color: #00ffcc;
+        }
+        .work-thumb {
+            width: 100%;
+            height: 380px;
+            background: #1e1e24;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        .work-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .work-thumb:hover img {
+            transform: scale(1.03);
+        }
+        .wide-item {
+            grid-column: span 2;
+        }
+        .work-thumb-leaflet {
+            width: 100%;
+            height: 420px;
+            background: #1a1a1f;
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+        }
+        .leaflet-page {
+            flex: 1;
+            height: 100%;
+            background: #25252b;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px dashed #3e3e4a;
+            transition: border-color 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+        .leaflet-page img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .leaflet-page:hover {
+            transform: scale(1.02);
+        }
+        .work-item:hover .leaflet-page {
+            border-color: #00ffcc;
+        }
+        .work-desc {
+            padding: 35px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .work-num {
+            font-size: 14px;
+            color: #00ffcc;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .work-desc h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .work-summary {
+            color: #94a3b8;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        .work-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .work-tags span {
+            background: #1c1c24;
+            color: #00ffcc;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .mockup-tag {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.6);
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #eee;
+            backdrop-filter: blur(5px);
+            z-index: 10;
+        }
+
+        #contact {
+            background-color: #0f0f11;
+            min-height: 70vh;
+        }
+        .contact-box {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-box h3 {
+            font-size: 58px;
+            font-weight: 700;
+            color: #00ffcc;
+            letter-spacing: 1px;
+            margin-bottom: 48px;
+        }
+        .send-email-btn {
+            display: inline-block;
+            background-color: #00ffcc;
+            color: #0f0f11;
+            font-size: 26px;
+            font-weight: 700;
+            padding: 26px 90px;
+            border-radius: 14px;
+            text-decoration: none;
+            margin-bottom: 28px;
+            transition: background-color 0.3s, transform 0.2s;
+            letter-spacing: 0.5px;
+        }
+        .send-email-btn:hover {
+            background-color: #00e6b8;
+            transform: translateY(-3px);
+        }
+        .contact-email {
+            font-size: 20px;
+            color: #94a3b8;
+            margin-bottom: 14px;
+        }
+        .contact-sub {
+            font-size: 20px;
+            color: #00ffcc;
+            font-weight: 600;
+            border-left: 3px solid #00ffcc;
+            padding-left: 10px;
+            display: inline-block;
+        }
+        .contact-divider {
+            width: 100%;
+            border: none;
+            border-top: 1px solid #1f1f24;
+            margin-top: 100px;
+        }
+
+        .lightbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 10, 12, 0.95);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border: 1px solid #2e2e38;
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .lightbox-modal.active .lightbox-content img {
+            transform: scale(1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #00ffcc;
+            font-size: 32px;
+            cursor: pointer;
+            font-weight: 300;
+            transition: color 0.3s;
+        }
+        .lightbox-close:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="inner">
+            <div class="logo"><a href="#home">Portfolio File</a></div>
+            <nav class="gnb">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#works">Works</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="inner">
+            <div class="intro-text">
+                <h2 class="fade-in">Park Un-seo's<br>Designer</h2>
+                <div class="intro-desc-wrap fade-in">
+                    <div class="intro-bar"></div>
+                    <p>불필요함을 덜어내고 본질에 집중하는 웹디자이너, 박운서입니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="inner">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <div class="about-profile zoomable">
+                    <img src="img/about.jpeg" alt="박운서 프로필 사진">
+                </div>
+                <div class="about-info">
+                    <p>본질만 남긴 레이아웃으로 사용자와 감성적으로 연결되는 디자인을 만듭니다.</p>
+                    <div class="meta-info">
+                        <strong>성명 :</strong> 박운서 (Park Un Seo)<br>
+                        <strong>직업 :</strong> Web Designer<br>
+                        <strong>자격증 :</strong> Industrial Engineer Visual Information Design<br>
+                        <strong>좌우명 :</strong> "Simplicity is the ultimate sophistication." —Leonardo da Vinci
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="inner">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon-wrap">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" alt="Photoshop">
+                        <span class="skill-badge">Expert</span>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Web Design</h3>
+                        <p>컨셉 아트 및 독창적인 톤앤매너 비주얼을 구축합니다.</p>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon-wrap">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                        <span class="skill-badge">Advanced</span>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Interaction Web</h3>
+                        <p>Vanilla JS와 GSAP 라이브러리를 통해 생동감 넘치는 화면 모션을 제어합니다.</p>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon-wrap">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+                        <span class="skill-badge">Expert</span>
+                    </div>
+                    <div class="skill-info">
+                        <h3>UI/UX Design</h3>
+                        <p>Figma와 Photoshop을 기반으로 컴포넌트를 설계하고 직관적인 가독성을 구현합니다.</p>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon-wrap">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg" alt="Illustrator">
+                        <span class="skill-badge">Intermediate</span>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Editorial Design</h3>
+                        <p>Illustrator를 활용하여 리플렛, 패키지 등 다채로운 인쇄 매체 편집을 다룹니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="works">
+        <div class="inner">
+            <h2 class="section-title">Works</h2>
+            <div class="works-grid">
+
+                <div class="work-item">
+                    <div class="work-thumb zoomable">
+                        <span class="mockup-tag">Promotion</span>
+                        <img src="img/다우니.jpg" alt="다우니 브랜드 포스터">
+                    </div>
+                    <div class="work-desc">
+                        <div>
+                            <span class="work-num">01</span>
+                            <h3>다우니 브랜드 포스터</h3>
+                            <p class="work-summary">"깨끗함은 향기에서 시작돼요." 자연을 담은 다우니의 아이덴티티를 시각화하고 상쾌하고 내추럴한 톤앤매너로 디자인한 프로모션 포스터 레이아웃입니다.</p>
+                        </div>
+                        <div class="work-tags"><span>Creative</span><span>Typography</span><span>Photoshop</span></div>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-thumb zoomable">
+                        <span class="mockup-tag">Promotion</span>
+                        <img src="img/음악.jpg" alt="Yellow Music">
+                    </div>
+                    <div class="work-desc">
+                        <div>
+                            <span class="work-num">02</span>
+                            <h3>YELLOW MUSIC : 침묵의 선율 인터랙션</h3>
+                            <p class="work-summary">"음악은 음표와 음표 사이에 있는 침묵 속에 있다." 명언을 주제로 강력한 옐로우 컬러 콘셉트와 타이포그래피 모션을 GSAP 애니메이션 효과와 결합한 실험적 웹 쇼케이스 페이지입니다.</p>
+                        </div>
+                        <div class="work-tags"><span>GSAP Animation</span><span>JavaScript</span><span>Creative Web</span></div>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-thumb zoomable">
+                        <span class="mockup-tag">Promotion</span>
+                        <img src="img/풍선.jpg" alt="노랑풍선">
+                    </div>
+                    <div class="work-desc">
+                        <div>
+                            <span class="work-num">03</span>
+                            <h3>노랑풍선 : 5월 황금 연휴 유럽 여행 특선</h3>
+                            <p class="work-summary">가정의 달 연휴를 맞이한 4박 5일 로마·바르셀로나·파리 유럽 3개 도시 가족여행 프로모션 페이지입니다. 여행지 정보와 예약 안내 가독성을 극대화한 구조적인 레이아웃 컴포넌트 배치를 중점적으로 제작했습니다.</p>
+                        </div>
+                        <div class="work-tags"><span>Responsive UI</span><span>Component Design</span><span>Figma</span></div>
+                    </div>
+                </div>
+
+                <div class="work-item wide-item">
+                    <div class="work-thumb-leaflet">
+                        <div class="leaflet-page zoomable">
+                            <img src="img/오설록1.jpg" alt="오설록 리플렛 01">
+                        </div>
+                        <div class="leaflet-page zoomable">
+                            <img src="img/오설록2.jpg" alt="오설록 리플렛 02">
+                        </div>
+                    </div>
+                    <div class="work-desc">
+                        <div>
+                            <span class="work-num">04</span>
+                            <h3>오설록(OSULLOC) : 제주의 생명력을 담은 사계절 편집 리플렛</h3>
+                            <p class="work-summary">세계 3대 녹차 재배지인 제주의 실록다원을 모티브로 한 오설록 티 뮤지엄의 편집 인쇄물 가이드라인 리플렛 디자인입니다. 첫 장에는 남쪽 바람과 햇살을 품은 차밭 공간 이야기와 가이드 정보를 투명하게 배치하였고, 두 번째 장에는 사계절의 정취를 담은 대표 블렌디드 시그니처 티 세트의 고유 색상과 텍스트 정보를 체계적으로 레이아웃하여 리플렛 앞·뒷면 유기성을 완성했습니다.</p>
+                        </div>
+                        <div class="work-tags"><span>Editorial Design</span><span>Leaflet (2 Pages)</span><span>Illustrator</span><span>Identity Design</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="inner">
+            <div class="contact-box">
+                <h3>Contact</h3>
+                <a href="mailto:pakunseo@naver.com" class="send-email-btn">Send Email</a>
+                <p class="contact-email">pakunseo@naver.com</p>
+                <p class="contact-sub">언제든 협업 메일 환영합니다!</p>
+            </div>
+            <hr class="contact-divider">
+        </div>
+    </section>
+
+    <div class="lightbox-modal" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <img src="" alt="확대된 이미지" id="lightboxImg">
+        </div>
+    </div>
+
+    <script>
+        
+        const fadeEls = document.querySelectorAll('#home .fade-in');
+        gsap.from(fadeEls, {
+            duration: 1.6,
+            scale: 0.85,
+            ease: 'elastic.out(1, 0.8)',
+            opacity: 0,
+            stagger: 0.45
+        });
+
+        const menuLinks = document.querySelectorAll('header .gnb a');
+        menuLinks.forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+
+                window.scrollTo({
+                    top: targetSection.offsetTop,
+                    behavior: 'smooth'
+                });
+
+                menuLinks.forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const zoomableItems = document.querySelectorAll('.zoomable');
+
+        zoomableItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const targetImgSrc = this.querySelector('img').getAttribute('src');
+                const targetImgAlt = this.querySelector('img').getAttribute('alt');
+                
+                lightboxImg.setAttribute('src', targetImgSrc);
+                lightboxImg.setAttribute('alt', targetImgAlt);
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox || e.target === lightbox.querySelector('.lightbox-content')) {
+                closeLightbox();
+            }
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => {
+                lightboxImg.setAttribute('src', '');
+            }, 400);
+        }
+    </script>
+</body>
+</html>
