@@ -111,13 +111,11 @@
             margin-bottom: 60px;
             font-weight: 700;
         }
-        
         #home .intro-desc-wrap {
             display: flex;
             align-items: center;
             gap: 20px;
         }
-        
         #home .intro-bar {
             width: 8px;
             height: 38px;
@@ -188,7 +186,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 330px;
+            min-height: 360px;
         }
         .skill-card:hover {
             transform: translateY(-7px);
@@ -217,17 +215,47 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .skill-info h3 { 
-            font-size: 22px; 
+        .skill-info h3 {
+            font-size: 22px;
             font-weight: 600;
-            color: #fff; 
-            margin-bottom: 12px; 
+            color: #fff;
+            margin-bottom: 12px;
         }
-        .skill-info p { 
-            font-size: 14px; 
-            color: #94a3b8; 
-            line-height: 1.6; 
+        .skill-info p {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
             word-break: keep-all;
+        }
+
+        .skill-bar-wrap {
+            margin-top: 28px;
+        }
+        .skill-bar-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+        .skill-bar-label span:last-child {
+            font-weight: 600;
+            color: #00ffcc;
+        }
+        .skill-bar-track {
+            width: 100%;
+            height: 5px;
+            background: #1e1e28;
+            border-radius: 99px;
+            overflow: hidden;
+        }
+        .skill-bar-fill {
+            height: 100%;
+            border-radius: 99px;
+            background: linear-gradient(90deg, #00c9a7, #00ffcc);
+            width: 0;
+            transition: width 1.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         #works {
@@ -517,46 +545,95 @@
         <div class="inner">
             <h2 class="section-title">Skills</h2>
             <div class="skills-grid">
+
                 <div class="skill-card">
-                    <div class="skill-icon-wrap">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" alt="Photoshop">
-                        <span class="skill-badge">Expert</span>
+                    <div>
+                        <div class="skill-icon-wrap">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" alt="Photoshop">
+                            <span class="skill-badge">Expert</span>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Web Design</h3>
+                            <p>컨셉 아트 및 독창적인 톤앤매너 비주얼을 구축합니다.</p>
+                        </div>
                     </div>
-                    <div class="skill-info">
-                        <h3>Web Design</h3>
-                        <p>컨셉 아트 및 독창적인 톤앤매너 비주얼을 구축합니다.</p>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label">
+                            <span>숙련도</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill" data-level="95"></div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="skill-card">
-                    <div class="skill-icon-wrap">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
-                        <span class="skill-badge">Advanced</span>
+                    <div>
+                        <div class="skill-icon-wrap">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                            <span class="skill-badge">Advanced</span>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Interaction Web</h3>
+                            <p>Vanilla JS와 GSAP 라이브러리를 통해 생동감 넘치는 화면 모션을 제어합니다.</p>
+                        </div>
                     </div>
-                    <div class="skill-info">
-                        <h3>Interaction Web</h3>
-                        <p>Vanilla JS와 GSAP 라이브러리를 통해 생동감 넘치는 화면 모션을 제어합니다.</p>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label">
+                            <span>숙련도</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill" data-level="80"></div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="skill-card">
-                    <div class="skill-icon-wrap">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
-                        <span class="skill-badge">Expert</span>
+                    <div>
+                        <div class="skill-icon-wrap">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+                            <span class="skill-badge">Expert</span>
+                        </div>
+                        <div class="skill-info">
+                            <h3>UI/UX Design</h3>
+                            <p>Figma와 Photoshop을 기반으로 컴포넌트를 설계하고 직관적인 가독성을 구현합니다.</p>
+                        </div>
                     </div>
-                    <div class="skill-info">
-                        <h3>UI/UX Design</h3>
-                        <p>Figma와 Photoshop을 기반으로 컴포넌트를 설계하고 직관적인 가독성을 구현합니다.</p>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label">
+                            <span>숙련도</span>
+                            <span>92%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill" data-level="92"></div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="skill-card">
-                    <div class="skill-icon-wrap">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg" alt="Illustrator">
-                        <span class="skill-badge">Intermediate</span>
+                    <div>
+                        <div class="skill-icon-wrap">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg" alt="Illustrator">
+                            <span class="skill-badge">Intermediate</span>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Editorial Design</h3>
+                            <p>Illustrator를 활용하여 리플렛, 패키지 등 다채로운 인쇄 매체 편집을 다룹니다.</p>
+                        </div>
                     </div>
-                    <div class="skill-info">
-                        <h3>Editorial Design</h3>
-                        <p>Illustrator를 활용하여 리플렛, 패키지 등 다채로운 인쇄 매체 편집을 다룹니다.</p>
+                    <div class="skill-bar-wrap">
+                        <div class="skill-bar-label">
+                            <span>숙련도</span>
+                            <span>72%</span>
+                        </div>
+                        <div class="skill-bar-track">
+                            <div class="skill-bar-fill" data-level="72"></div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -654,7 +731,7 @@
     </div>
 
     <script>
-        
+     
         const fadeEls = document.querySelectorAll('#home .fade-in');
         gsap.from(fadeEls, {
             duration: 1.6,
@@ -670,16 +747,23 @@
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetSection = document.querySelector(targetId);
-
-                window.scrollTo({
-                    top: targetSection.offsetTop,
-                    behavior: 'smooth'
-                });
-
+                window.scrollTo({ top: targetSection.offsetTop, behavior: 'smooth' });
                 menuLinks.forEach(link => link.classList.remove('active'));
                 this.classList.add('active');
             });
         });
+
+        const skillBars = document.querySelectorAll('.skill-bar-fill');
+        const barObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    el.style.width = el.dataset.level + '%';
+                    barObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.4 });
+        skillBars.forEach(bar => barObserver.observe(bar));
 
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
@@ -690,7 +774,6 @@
             item.addEventListener('click', function() {
                 const targetImgSrc = this.querySelector('img').getAttribute('src');
                 const targetImgAlt = this.querySelector('img').getAttribute('alt');
-                
                 lightboxImg.setAttribute('src', targetImgSrc);
                 lightboxImg.setAttribute('alt', targetImgAlt);
                 lightbox.classList.add('active');
@@ -699,7 +782,6 @@
         });
 
         lightboxClose.addEventListener('click', closeLightbox);
-
         lightbox.addEventListener('click', function(e) {
             if (e.target === lightbox || e.target === lightbox.querySelector('.lightbox-content')) {
                 closeLightbox();
@@ -709,9 +791,7 @@
         function closeLightbox() {
             lightbox.classList.remove('active');
             document.body.style.overflow = 'auto';
-            setTimeout(() => {
-                lightboxImg.setAttribute('src', '');
-            }, 400);
+            setTimeout(() => { lightboxImg.setAttribute('src', ''); }, 400);
         }
     </script>
 </body>
